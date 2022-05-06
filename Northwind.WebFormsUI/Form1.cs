@@ -1,5 +1,6 @@
 ﻿using Northwind.Bussiness.Abstract;
 using Northwind.Bussiness.Concrete;
+using Northwind.Bussiness.DependencyInjection.Ninject;
 using Northwind.DataAccess.Concrete;
 using Northwind.DataAccess.Concrete.EntityFramework;
 using Northwind.Entities1.Concrete;
@@ -23,8 +24,9 @@ namespace Northwind.WebFormsUI
         public Form1()
         {
             InitializeComponent();
-            _IProductservice = new ProductManager(new EfProductDal());
-            _ICategoryService = new CategoryManager(new EfCategoryDal());
+            _IProductservice = InstanceFactory.GetInstance<IProductService>();
+            //_IProductservice = new ProductManager(new EfProductDal());
+            _ICategoryService = InstanceFactory.GetInstance<ICategoryService>();
         }
 
         private void Form1_Load(object sender, EventArgs e)
